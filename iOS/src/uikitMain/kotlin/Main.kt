@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -73,13 +75,15 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
                 var clickCounter by remember { mutableStateOf(0) }
                 Divider(modifier = Modifier.height(40.dp).background(MaterialTheme.colors.primary))
                 Scaffold(topBar = { TopAppBar { Text(screenTitle) } }) {
-                    Column(
+                    LazyColumn(
                         modifier = Modifier.fillMaxSize(),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Button(onClick = { clickCounter += 1 }) {
-                            Text(if (clickCounter == 0) "Click me!" else "Clicked $clickCounter times")
+                        items((0..9).toList()){
+                            Button(onClick = { clickCounter += 1 }) {
+                                Text(if (clickCounter == 0) "Click me!" else "Clicked $clickCounter times")
+                            }
                         }
                     }
                 }
