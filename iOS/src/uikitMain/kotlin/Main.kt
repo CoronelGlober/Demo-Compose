@@ -14,6 +14,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -70,7 +71,7 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.End
             ) {
-                var clickCounter by remember { mutableStateOf(0) }
+                var textContent by remember { mutableStateOf("") }
                 Divider(modifier = Modifier.height(40.dp).background(MaterialTheme.colors.primary))
                 Scaffold(topBar = { TopAppBar { Text(screenTitle) } }) {
                     Column(
@@ -78,9 +79,7 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Button(onClick = { clickCounter += 1 }) {
-                            Text(if (clickCounter == 0) "Click me!" else "Clicked $clickCounter times")
-                        }
+                        TextField(textContent, onValueChange = { textContent = it })
                     }
                 }
             }
